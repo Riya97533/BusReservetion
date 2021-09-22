@@ -10,14 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_054756) do
+ActiveRecord::Schema.define(version: 2021_09_22_121806) do
 
-  create_table "busowners", force: :cascade do |t|
+  create_table "buses", force: :cascade do |t|
+    t.string "name"
+    t.string "source"
+    t.string "destination"
+    t.decimal "fare"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "starts_at"
+    t.text "description"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "role_type"
+    t.string "string"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
   end
 
 end

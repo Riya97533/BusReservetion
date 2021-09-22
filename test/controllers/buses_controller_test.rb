@@ -1,6 +1,6 @@
 require "test_helper"
 
-class BusownersControllerTest < ActionDispatch::IntegrationTest
+class BusesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

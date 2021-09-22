@@ -1,0 +1,23 @@
+
+<ul>
+<% @buses.each do |bus| %>
+<h1><%=link_to bus.name, bus %></h1>
+   <li>
+   <strong><%= bus.name %></strong>
+   in <%= bus.source %> To
+   <%= bus.destination %>
+   <%= number_to_currency(bus.fare, precision: 0) %>
+   </li>
+   <p>
+   <%= bus.description %>
+   </p>
+   <p>
+   <%= bus.starts_at %>
+   </p>
+   <% end %>
+   </ul>
+   <% if current_user_admin? %>
+   <section class="admin">
+   <%= link_to "Add New bus", new_bus_path, class: "button" %>
+   </section>
+   <% end %>
