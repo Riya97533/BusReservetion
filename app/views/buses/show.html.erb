@@ -1,11 +1,34 @@
+<section class="bus-details">
+
+<div class="details">
 <h1><%= @bus.name %></h1>
-<ul>
-<li><%= @bus.source %></li>
-<li><%= @bus.destination %></li>
-<li><%= @bus.fare %></li>
-<li><%= @bus.description %></li>
-<li><%= @bus.starts_at %></li>
-</ul>
+<p>
+ <%= @bus.source %>
+</p>
+<p>
+<%= @bus.destination %>
+</p>
+<p>
+<%= @bus.fare %>
+</p>
+<p>
+<%= @bus.description%>
+</p>
+<p>
+<%= @bus.start_at%>
+</p>
+<p>
+<%= @bus.quantity %>
+</p>
+<div class="book ticket">
+<%= link_to "book!", new_bus_ticket_path(@bus),
+         class: "book" %>
+<p>
+<%=  link_to "Book ticket", bus_tickets_path(@bus) %>
+</p>
+</div>
+</section>
+
 
 <% if current_user_admin? %>
 <section class="admin">
@@ -13,4 +36,5 @@
 <%=link_to "Delete", @bus, class: "button", method: :delete,
                     data: { confirm: "Really?!" } %>
 </section>
+
 <% end %>

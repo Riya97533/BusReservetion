@@ -10,24 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_121806) do
+ActiveRecord::Schema.define(version: 2021_09_28_091845) do
 
   create_table "buses", force: :cascade do |t|
     t.string "name"
     t.string "source"
     t.string "destination"
     t.decimal "fare"
+    t.text "description"
+    t.datetime "start_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "starts_at"
-    t.text "description"
+    t.integer "quantity"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "quantity"
+    t.boolean "paid"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "ticket_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
     t.string "role_type"
-    t.string "string"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "ticket_type"
+    t.integer "bus_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bus_id"], name: "index_tickets_on_bus_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +55,12 @@ ActiveRecord::Schema.define(version: 2021_09_22_121806) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.integer "role_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "reservations", "users"
+  add_foreign_key "tickets", "buses"
+  add_foreign_key "users", "roles"
+  add_foreign_key "users", "roles"
 end

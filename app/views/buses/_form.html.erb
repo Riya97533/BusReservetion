@@ -19,6 +19,8 @@
 <p>
   <%= f.datetime_select :starts_at, {ampm:true}, {class:"datetime"} %>
   </p>
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity %>
   <p>
 <%= f.submit %>
 </p>

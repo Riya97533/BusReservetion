@@ -1,0 +1,8 @@
+<h1>Tickets for <%= link_to @bus.name, @bus %></h1>
+<ul class="tickets">
+<% @tickets.each do |t| %>
+<li>
+<%= t.ticket_type %> for <%= t.bus.name %>
+</li>
+<% end %>
+</ul>

@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   
+  #  resources :tickets
+  
+  resources :reservations
+ 
   resources :users
   resources :roles
 root "buses#index"
 get "signup" => "users#new"
 resource :session, only: [:new, :create, :destroy]
 
-resources :buses
+resources :buses do
+  resources :tickets
+end
  
 end
     # resources :buses

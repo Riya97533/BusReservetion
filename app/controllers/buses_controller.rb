@@ -39,7 +39,7 @@ end
  private
  def bus_params
     params.require(:bus).
-    permit(:name, :source, :destination, :fare, :starts_at)
+    permit(:name, :source, :destination, :fare, :start_at, :quantity)
 end
 
 end

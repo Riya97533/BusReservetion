@@ -1,0 +1,20 @@
+<h1>Tickets for <%= link_to @bus.name, @bus %></h1>
+
+<%= form_with(model: [@bus, @ticket], local: true) do |f| %>
+<%= f.text_field :name, autofocus: true %>
+
+<%= f.label :source %>
+<%= f.text_field :source, autofocus: true %>
+
+<%= f.label :destination %>
+<%= f.text_field :destination, autofocus: true %>
+
+<%= f.label :fare %>
+<%= f.number_field :fare, autofocus: true %>
+
+<%= f.label :quantity %>
+<%= f.select :quantity, tickets:: quantity,
+            prompt: "Pick one" %>
+
+<%= f.submit %>
+<% end %>            

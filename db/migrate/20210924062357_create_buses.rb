@@ -5,6 +5,9 @@ class CreateBuses < ActiveRecord::Migration[6.1]
       t.string :source
       t.string :destination
       t.decimal :fare
+      t.text :description
+      t.datetime :start_at
+      
 
       t.timestamps
     end

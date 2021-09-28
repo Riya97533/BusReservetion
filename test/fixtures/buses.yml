@@ -5,9 +5,15 @@ one:
   source: MyString
   destination: MyString
   fare: 9.99
+  description: MyText
+  start_at: 2021-09-24 11:53:57
+  user=references: MyString
 
 two:
   name: MyString
   source: MyString
   destination: MyString
   fare: 9.99
+  description: MyText
+  start_at: 2021-09-24 11:53:57
+  user=references: MyString

@@ -1,0 +1,9 @@
+<h1>Tickets for <%= link_to @bus.name, @bus %></h1>
+ <%= form_with(model: [@bus, @ticket], local: true) do |f| %>
+
+
+<%= f.label :ticket_type %>
+<%= f.text_field :ticket_type, autofocus: true %>
+
+<%= f.submit %>
+<% end %>

@@ -10,11 +10,14 @@
    </li>
    <p>
    <%= bus.description %>
-   </p>
+   </p>  
    <p>
-   <%= bus.starts_at %>
-   </p>
-   <% end %>
+   <%= bus.start_at %>
+   </p> 
+   <%# <p>
+   <%= @bus.quantity %>
+   <%# </p> %>
+   <% end %> 
    </ul>
    <% if current_user_admin? %>
    <section class="admin">
