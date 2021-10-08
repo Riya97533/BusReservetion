@@ -3,6 +3,10 @@
   <h2><%= mail_to(@user.email) %></h2>
 
 
+<%# <%= link_to 'Edit', edit_user_path(@user) %> 
+<%# <% if isadmin? || isbusowner? %> 
+
+<%# <% if current_user?(@user_role) %> 
  <% if current_user?(@user) %>
  <div class="actions">
     <%= link_to "Edit Account", edit_user_path(@user),
@@ -11,6 +15,10 @@
                   data: { confirm: 'Are you sure' },
                   class: "button delete" %>
   </div>
-  <% end %>
-  
+<% end %>
 </section>
+
+
+
+
+  

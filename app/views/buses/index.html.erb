@@ -10,7 +10,8 @@
    </li>
    <p>
    <%= bus.description %>
-   </p>  
+   </p> 
+    
    <p>
    <%= bus.start_at %>
    </p> 
@@ -19,8 +20,17 @@
    <%# </p> %>
    <% end %> 
    </ul>
-   <% if current_user_admin? %>
-   <section class="admin">
-   <%= link_to "Add New bus", new_bus_path, class: "button" %>
-   </section>
+       
+        <%# <% if current_user_admin?  %>
+        <%# <section class="admin">  %> 
+     <%# <%= link_to "Add New bus", new_bus_path, class: "button" %>
+
+
+       <% if current_user_admin? %>
+       <section class="admin">  
+     <%= link_to "Add New bus", new_bus_path, class: "button" %>
+
+     </section>
+     
+
    <% end %>

@@ -1,7 +1,8 @@
 class BusesController < ApplicationController
 
     before_action :require_signin, except: [:index, :show]
-    before_action :require_admin, except: [:index, :show]
+     before_action :require_admin, except: [:index, :show]
+
     
     def index
     @buses = Bus.all
@@ -36,6 +37,9 @@ end
     @bus.destroy
     redirect_to buses_url
  end
+
+ 
+
  private
  def bus_params
     params.require(:bus).

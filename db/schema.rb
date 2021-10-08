@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_091845) do
+ActiveRecord::Schema.define(version: 2021_10_07_070804) do
 
   create_table "buses", force: :cascade do |t|
     t.string "name"
@@ -25,12 +25,15 @@ ActiveRecord::Schema.define(version: 2021_09_28_091845) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "quantity"
-    t.boolean "paid"
     t.integer "user_id", null: false
+    t.integer "bus_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.decimal "price"
+    t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "ticket_id"
+    t.index ["bus_id"], name: "index_reservations_on_bus_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -38,6 +41,26 @@ ActiveRecord::Schema.define(version: 2021_09_28_091845) do
     t.string "role_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "seats", force: :cascade do |t|
+    t.integer "x"
+    t.integer "y"
+    t.boolean "reserved"
+    t.integer "seats_configuration_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seats_configuration_id"], name: "index_seats_on_seats_configuration_id"
+  end
+
+  create_table "seats_configurations", force: :cascade do |t|
+    t.integer "area", default: 20
+    t.integer "height", default: 10
+    t.integer "width", default: 10
+    t.integer "bus_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bus_id"], name: "index_seats_configurations_on_bus_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -56,10 +79,14 @@ ActiveRecord::Schema.define(version: 2021_09_28_091845) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.integer "role_id"
+    t.string "role"
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "reservations", "buses"
   add_foreign_key "reservations", "users"
+  add_foreign_key "seats", "seats_configurations"
+  add_foreign_key "seats_configurations", "buses"
   add_foreign_key "tickets", "buses"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "roles"

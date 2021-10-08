@@ -15,17 +15,39 @@ class ApplicationController < ActionController::Base
     helper_method:current_user?
 
     def current_user_admin?
-     current_user && current_user.admin?
+    current_user && current_user.admin?
     end
-
     helper_method :current_user_admin?
 
-    def require_signin
+
+
+    # def current_user_role
+    #     current_user && current_user.role
+    #     end
+    #     helper_method :current_user_role
+    #     def require_role
+    #         unless current_user_role
+    #             redirect_to "Add New bus", new_bus_path, class: "button" 
+           
+    #         end
+    #     end
+
+
+    
+    
+    
+    
+    
+    
+        def require_signin
         unless current_user
             session[:intended_url] = request.url
         redirect_to new_session_url, alert: "Please sign in first!"
         end
      end
+
+   
+    
 
      def require_admin
         unless current_user_admin?
@@ -33,4 +55,8 @@ class ApplicationController < ActionController::Base
         end
      end
 
+     
+     
+
 end
+

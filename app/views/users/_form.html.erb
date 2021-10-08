@@ -1,4 +1,9 @@
 <%= form_with(model: user, local: true) do |f| %>
+<%= f.label :role %>
+<%= f.select :role, User::ROLE_OPTIONS, 
+             prompt: "Pick one" %>
+
+            
 
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true %>
@@ -19,5 +24,11 @@
   <% else %>
     <%= f.submit "Update Account" %>
   <% end %>
+
+
+
+
+
+   
   <%# <%= f.submit %> 
 <% end %>

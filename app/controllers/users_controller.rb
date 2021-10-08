@@ -1,12 +1,26 @@
 class UsersController < ApplicationController
 
 before_action :require_signin, except: [:new, :create]
-before_action :require_correct_user, only: [:edit, :update, :destroy]   
+before_action :require_correct_user, only: [:edit, :update, :destroy] 
 
 
 def index
     @users = User.all
 end
+
+# def index
+#    # @users = User.search(params).paginate(page: params[:page])
+#    if isAdmin?
+#      @q_users = User.where.not(role: "Busowner").ransack(params[:q])
+#    else
+#      @q_users = User.ransack(params[:q])
+#    end
+#    @users = @q_users.result().paginate(page: params[:page])
+#        @users = User.all
+
+#  end
+
+
 
 def show
    @user = User.find(params[:id])
@@ -19,6 +33,7 @@ def new
  def create
     @user = User.new(user_params)
  if @user.save
+
    session[:user_id] = @user.id
     redirect_to @user, notice: "Thanks for signing up!"
  else
@@ -51,6 +66,10 @@ end
    
       def user_params
       params.require(:user).
-    permit(:name, :email, :password, :password_confirmation)
+      permit(:name, :email, :password, :password_confirmation, :role)
    end
+
+   
 end
+
+

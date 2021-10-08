@@ -1,0 +1,12 @@
+<h2>Buses Found: <%= @buses.size %></h2>
+
+<% if @buses.empty?%>
+<p>Sorry, no buses found.</p>
+<% else %>
+<ul>
+<% @buses.each do |bus| %>
+   <li><%= link_to bus.name, bus %></li>
+   
+<% end %>
+</ul>
+<% end %>
