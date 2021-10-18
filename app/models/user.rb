@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 has_many :reservations, dependent: :destroy
   
-# enum role: [:Busowner, :Admin, :Customer]
+#  enum role: [:Busowner, :Admin, :Customer]
 
 
 

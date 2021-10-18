@@ -3,22 +3,11 @@ class UsersController < ApplicationController
 before_action :require_signin, except: [:new, :create]
 before_action :require_correct_user, only: [:edit, :update, :destroy] 
 
-
 def index
     @users = User.all
 end
 
-# def index
-#    # @users = User.search(params).paginate(page: params[:page])
-#    if isAdmin?
-#      @q_users = User.where.not(role: "Busowner").ransack(params[:q])
-#    else
-#      @q_users = User.ransack(params[:q])
-#    end
-#    @users = @q_users.result().paginate(page: params[:page])
-#        @users = User.all
 
-#  end
 
 
 

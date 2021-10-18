@@ -3,7 +3,6 @@
 <%= f.select :role, User::ROLE_OPTIONS, 
              prompt: "Pick one" %>
 
-            
 
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true %>
@@ -19,6 +18,14 @@
 
   <%= f.label :password_confirmation, "Confirm Password" %>
   <%= f.password_field :password_confirmation %>
+
+
+ 
+
+
+
+
+
 <% if user.new_record? %>
     <%= f.submit "Create Account" %>
   <% else %>

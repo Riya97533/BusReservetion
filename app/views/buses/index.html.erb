@@ -26,11 +26,11 @@
      <%# <%= link_to "Add New bus", new_bus_path, class: "button" %>
 
 
-       <% if current_user_admin? %>
-       <section class="admin">  
+       <% if current_user_busowner?  %>
+       <section class="busowner">  
      <%= link_to "Add New bus", new_bus_path, class: "button" %>
 
      </section>
-     
+     <% end %>
 
-   <% end %>
+      

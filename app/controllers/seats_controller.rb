@@ -1,44 +1,36 @@
 class SeatsController < ApplicationController
-    #  before_action :set_seat, only: [:show, :edit, :update, :destroy]
-def index
-    @seats = Seat.all
-end
-  
-    def show
-             @seat = Seat.find(params[:id])
+ 
+    before_action :set_bus
+    def index 
+        @seats = @bus.seats
+    end
+    def new
+        @seats = @bus.seats.new
+    end
 
-  end
-  def edit
-    @seat = Seat.find(params[:id])
-
-  end
-  def update
-    @seat = Seat.find(params[:id])
-    seat_params =
-    params.require(:seat).
-    permit(:x, :y, :reserved)
-@seat.update(seat_params)
-redirect_to seat_path @seat
-  end
-  
-  def new
-    @seat = Seat.new
+    def create
+        @seats = @bus.seats.new(seat_params)
+     
+        if @seats.save
+            redirect_to bus_seats_url(@bus),
+            notice: "seat booked!"
+        else
+            render :new
+        end
+    end
+     private
       
-  end
-  def create
+     def seat_params
+        params.require(:seat).permit(:seat_no)
+     end
+
+     def set_bus
+        @bus = Bus.find(params[:bus_id])
+     end
     
-    @seat = Seat.new(seat_params)
-    @seat.save
-    redirect_to @seat
-      
-  end
-
-  private
-#   def set_seat
-#     @seat = Seat.find(params[:id])
-#   end
-
-  def seat_params
-    params.require(:seat).permit(:x, :y, :reserved, :configuration_id)
-  end
+    
 end
+
+
+
+ 

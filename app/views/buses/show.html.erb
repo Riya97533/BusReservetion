@@ -20,11 +20,16 @@
 <p>
 <%= @bus.quantity %>
 </p>
-<%# <div class="book ticket">
-<%= link_to "book!", new_bus_ticket_path(@bus),
-         class: "book" %>
+
+<div class="book seat_no">
+<%=  link_to "book seat_no", new_bus_seat_path(@bus), 
+                    class: "book seat_no" %> 
+
 <%# <p>
-<%=  link_to "Book ticket", bus_tickets_path(@bus) %>
+<%= link_to "book seat", bus_seats_path(@bus) %>
+<%# </p>   %>
+</div>
+<%# <%=  link_to "Book ticket", bus_tickets_path(@bus) %> 
 <%# </p>
 </div> %> 
 
@@ -42,13 +47,14 @@
                       <%# data: { confirm: "Really?!" } %>    
 
          <% if current_user_admin? %>
-        <section class="admin">    
+         <section class="admin">    
           <%=link_to "Edit", edit_bus_path(@bus), class: "button" %>  
           <%=link_to "Delete", @bus, class: "button", method: :delete, 
                       data: { confirm: "Really?!" } %>
 
 
 
-</section>
+ </section> %>
 
 <% end %>
+

@@ -14,23 +14,25 @@ class ApplicationController < ActionController::Base
 
     helper_method:current_user?
 
-    def current_user_admin?
+    def current_user_admin?   
     current_user && current_user.admin?
     end
     helper_method :current_user_admin?
 
+    # def current_user?(user)
+    #     current_user == user
+    # end
+
+    # helper_method:current_user?
 
 
-    # def current_user_role
-    #     current_user && current_user.role
-    #     end
-    #     helper_method :current_user_role
-    #     def require_role
-    #         unless current_user_role
-    #             redirect_to "Add New bus", new_bus_path, class: "button" 
-           
-    #         end
-    #     end
+
+    def current_user_busowner?
+        current_user && current_user.busowner?
+        end
+        helper_method :current_user_busowner?
+    
+
 
 
     
@@ -49,8 +51,17 @@ class ApplicationController < ActionController::Base
    
     
 
-     def require_admin
-        unless current_user_admin?
+    #  def require_admin
+    #     unless current_user_admin? 
+    #         redirect_to buses_url, alert: "Unauthorized access!"
+    #     end
+    #  end
+
+
+     
+
+     def require_busowner
+        unless current_user_busowner?
             redirect_to buses_url, alert: "Unauthorized access!"
         end
      end

@@ -1,4 +1,7 @@
-<h1>New Seat</h1>
+<h1>Seats for <%= link_to @bus.name, @bus %></h1>
+ <%= form_with(model: [@bus, @seats], local: true) do |f| %>
 
-<%= render 'form' %>
-<%= link_to 'Back', seats_path %>
+<%= f.label :seat_no %>
+  <%= f.number_field :seat_no %>
+<%= f.submit %>
+<% end %>
